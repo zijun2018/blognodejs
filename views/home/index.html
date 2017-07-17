@@ -1,0 +1,68 @@
+
+<% include header.html %>
+<div>
+  <img src="images/baner.jpg" alt="" class="img-responsive">
+</div>
+
+<div class="container main">
+  <div class="row">
+    <div class="col-md-9 main-left">
+      <ul class="media-list">
+        <% for(let i = 0;i<posts.length;i++){ %>
+        <li class="media">
+          <a href="/posts?id=<%= posts[i]._id %>" class="media-left"><img src="/<%= posts[i].cover %>" alt=""></a>
+          <div class="media-body">
+            <h2 class="media-heading"><a href="/posts?id=<%= posts[i]._id %>"><%= posts[i].title %></a></h2>
+            <ul class="list-inline">
+              <li><span class="glyphicon glyphicon-user">admin</span></li>
+              <li><span class="glyphicon glyphicon-time"></span><%= posts[i].time %></li>
+              <li><span class="glyphicon glyphicon-eye-open"></span><%= posts[i].count %>浏览</li>
+              <li><span class="glyphicon glyphicon-comment"></span><a href="">评论一下</a></li>
+            </ul>
+            <p><%= posts[i].summary %></p>
+          </div>
+        </li>
+        <% } %>
+      </ul>
+      <div class="text-center">
+        <ul class="pagination">
+          <li><a href="">&laquo;</a></li>
+          <li><a href="">1</a></li>
+          <li><a href="">3</a></li>
+          <li><a href="">3</a></li>
+          <li><a href="">4</a></li>
+          <li><a href="">5</a></li>
+          <li><a href="">&raquo;</a></li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="col-md-3">
+      <div class="panel panel-default hot">
+        <div class="panel-heading">
+          热门文章
+        </div>
+        <div class="panel-body">
+          <ul class="list-unstyled">
+            <li><span class="label label-danger">1</span> <a href="">如何为网站和应用创建设计...</a></li>
+            <li><span class="label label-danger">2</span> <a href="">假如5年后你是开发总监</a></li>
+            <li><span class="label label-danger">3</span> <a href="">20个精雕细琢的LOGO草图...</a></li>
+            <li><span class="label label-default">4</span> <a href="">每个程序员都必须遵守的编程...</a></li>
+            <li><span class="label label-default">5</span> <a href="">推荐：7个有用的HTML5学习...</a></li>
+            <li><span class="label label-default">6</span> <a href="">响应式Web设计</a></li>
+            <li><span class="label label-default">7</span> <a href="">Javascript判断Chrome浏览器</a></li>
+            <li><span class="label label-default">8</span> <a href=""> 20个精雕细琢的LOGO草图...</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer container-fluid text-center">
+
+  <p>版权所有，保留一切权利！ 转载内容版权归作者及来源网站所有，原创内容转载请注明来源。</p>
+  <p>Copyright © 2017 Coder, All Rights Reserved.</p>
+</div>
+
+</body>
+</html>

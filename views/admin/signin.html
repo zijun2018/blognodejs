@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>会员 注册</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/login.min.css" rel="stylesheet">
+    <script src="/js/jquery.min.js"></script>
+
+	<style>
+		.btn-success {
+			background-color: #1c84c6;
+			border-color: #1c84c6;
+			color: #FFF
+		}
+		.btn-success:hover {
+			background-color: #1a7bb9;
+			border-color: #1a7bb9;
+			color: #FFF
+		}
+		.signinpanel .forget {font-size: 12px;}
+	</style>
+</head>
+
+<body class="signin">
+    <div class="signinpanel">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <form id="userForm" method="post" ENCTYPE="multipart/form-data" action="/user/signin">
+                    <h4 class="no-margins" style="font-weight:bold; font-size:24px;">会员注册</h4>
+                    <input type="text" class="form-control uname" placeholder="用户名" name="username" id="username" autocomplete="off"/>
+                    <input type="password" class="form-control pword m-b" placeholder="密码" name="password" id="password" />
+                    <p></p>
+                    <a href="/user/signin" class="forget" id="msg0" style="display: none">用户名已存在，请重新填写！</a>
+                    <a href="/user/login" class="forget" id="msg1" style="display: none">注册成功，亲前往登录！</a>
+                    <button  class="btn btn-success btn-block"   id="submit" value="submit">注册</button>
+                </form>
+            </div>
+        </div>
+        <div class="signup-footer">
+            <div class="text-center">
+                &copy; 2017 All Rights Reserved. Coder
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            //ajax提交数据
+            $('#submit').click(function () {
+                //严重用户输入是否正确
+                if($('#username').val()== '' || $('#password').val()== ''){
+                    $('#msg0').css('display','block');return false;
+                }else {
+                    alert(123);
+                    /*               $.post('/user/signin',$('#userForm').serialize(),function (data) {
+                     alert(1111);
+                     alert(data);
+                     if(json.status == 1){
+                     $('#msg1').css('display','block');
+                     }else if (json.status == -1) {
+                     $('#msg0').css('display','block');
+                     }else {
+                     alert('未知错误');
+                     }
+                     },'json');*/
+                    $.ajax({
+                        url : '/user/signin',
+                        type: 'POST',
+                        data: $('#userForm').serialize(),
+//                        dataType: 'json',
+                        timeout:5000,
+                        error: errorFunction,  //错误执行方法
+                        success: succFunction //成功执行方法
+                    });
+                    function errorFunction(err) {
+                        alert("error");
+                        alert(err);
+                    }
+                    function succFunction(data) {
+                        alert(okokok);
+                        JSON.stringify(data);
+                        if(data.msg == 1){
+                            $('#msg1').css('display','block');
+                        }else if (data.msg == -1) {
+                            $('#msg0').css('display','block');
+                        }else {
+                            alert('未知错误');
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
